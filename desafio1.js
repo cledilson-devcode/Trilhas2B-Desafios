@@ -15,5 +15,13 @@ let altura = 1.75;
 console.log(`Minha idade é: ${idade} e tenha ${altura} de altura.`);
 
 //----------------------------------------------------------------------------------
+// Questão 3: Crie uma variável chamada preco com o valor 50 e uma variável desconto com o valor 0.2 (20%). Calcule o preço com desconto e exiba o valor final.
+
+let preco = 50;
+let desconto = 0.2;
+let valorFinal = preco - (preco * desconto);
+console.log(`O produto com preço ${preco} possui um desconto de ${desconto} , assim o valor final é: ${valorFinal}`);
+
+
 
 
