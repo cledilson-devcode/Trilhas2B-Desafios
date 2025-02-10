@@ -118,7 +118,7 @@ for(let numeroPar = 0; numeroPar <= 20; numeroPar++){
 
 //----------------------------------------------------------------------------------
 // Questão 13: Escreva um código que calcule a área de um círculo. Utilize uma função para realizar o cálculo. A função deve receber o raio como parâmetro e retornar a área.
-let raio = 10;
+let raio = 8;
 const PI = 3.14;
 function calculandoAreaCirculo(params) {
     let area = PI * raio**2;
@@ -128,3 +128,21 @@ console.log(`A área do circulo é: ${calculandoAreaCirculo()}`);
 
 
 //----------------------------------------------------------------------------------
+//Questão 14: Crie um programa simples que calcule a soma de dois números e imprima o resultado. Após isso comente cada linha do seu código explicando o que cada parte faz.
+
+numero1 = 3; // Primeiro número para soma
+numero2 = 5; // Segundo número para soma
+
+// Função retorna a soma os dois número passados pelas variaveis numero1 e numero2
+function soma(numero1, numero2) {
+    return numero1 + numero2;
+}
+
+let resultadoSoma = soma(numero1, numero2); // Variavel que recebe o resultado da soma
+
+// Exibindo o resultado da soma através no console
+console.log(`Resultado da soma é: ${resultadoSoma}`);
+
+//----------------------------------------------------------------------------------
+
+
