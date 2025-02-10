@@ -4,7 +4,7 @@
 // Questão 1: Crie uma variável chamada nome e atribua seu nome a ela. Em seguida, exiba o valor dessa variável.
 
 let nome = 'Cledilson Pereira Pinto Filho';
-console.log(`Meu nome é ${nome}`);
+console.log(`${nome}`);
 
 //----------------------------------------------------------------------------------
 // Questão 2: Crie duas variáveis: uma chamada idade e outra chamada altura. Atribua a idade o valor 25 e a altura o valor 1.75. Exiba ambos os valores.
@@ -12,7 +12,7 @@ console.log(`Meu nome é ${nome}`);
 let idade = 25;
 let altura = 1.75;
 
-console.log(`Minha idade é: ${idade} e tenha ${altura} de altura.`);
+console.log(`${idade} idade --- ${altura} altura`);
 
 //----------------------------------------------------------------------------------
 // Questão 3: Crie uma variável chamada preco com o valor 50 e uma variável desconto com o valor 0.2 (20%). Calcule o preço com desconto e exiba o valor final.
@@ -71,3 +71,11 @@ if (numero1 == numero2) {
     console.log('Os números são diferentes');
     
 }
+
+//----------------------------------------------------------------------------------
+// Questão 8: Crie uma variável chamada nome e uma variável chamada idade. Exiba a mensagem "Olá, meu nome é [nome] e eu tenho [idade] anos", utilizando concatenação.
+// Como já criei as variais no inicio, estou só sobrescrevendo se necessario
+idade = 29;
+console.log(`Olá, meu nome é ${nome} e eu tenho ${idade} anos.`);
+
+
