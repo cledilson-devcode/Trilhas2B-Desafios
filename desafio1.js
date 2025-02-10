@@ -20,8 +20,17 @@ console.log(`Minha idade é: ${idade} e tenha ${altura} de altura.`);
 let preco = 50;
 let desconto = 0.2;
 let valorFinal = preco - (preco * desconto);
-console.log(`O produto com preço ${preco} possui um desconto de ${desconto} , assim o valor final é: ${valorFinal}`);
+console.log(`O produto com preço ${preco} possui um desconto de ${desconto * 100}% , assim o valor final é: ${valorFinal}`);
 
+//----------------------------------------------------------------------------------
+// Questão 4: Crie uma variável chamada temperatura e atribua o valor 30. Se a temperatura for maior que 25, exiba a mensagem "Está calor!". Caso contrário, exiba "Está fresco!".
 
+let temperatura = 30;
+if (temperatura > 25) {
+    console.log('Está calor!');
+} else {
+    console.log('Está fresco!');
+}
 
-
+//----------------------------------------------------------------------------------
+// Questão 5: 
