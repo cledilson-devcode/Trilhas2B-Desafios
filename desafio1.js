@@ -115,3 +115,16 @@ for(let numeroPar = 0; numeroPar <= 20; numeroPar++){
         console.log(numeroPar);        
     }
 }
+
+//----------------------------------------------------------------------------------
+// Questão 13: Escreva um código que calcule a área de um círculo. Utilize uma função para realizar o cálculo. A função deve receber o raio como parâmetro e retornar a área.
+let raio = 10;
+const PI = 3.14;
+function calculandoAreaCirculo(params) {
+    let area = PI * raio**2;
+    return area;
+}
+console.log(`A área do circulo é: ${calculandoAreaCirculo()}`);
+
+
+//----------------------------------------------------------------------------------
