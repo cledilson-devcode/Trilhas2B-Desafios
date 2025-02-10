@@ -144,5 +144,21 @@ let resultadoSoma = soma(numero1, numero2); // Variavel que recebe o resultado d
 console.log(`Resultado da soma é: ${resultadoSoma}`);
 
 //----------------------------------------------------------------------------------
+// Questão 15: Refatore o código abaixo para que seja mais legível, usando boas práticas de nomenclatura e separando o código em funções:
+/* `x = 10`
+`y = 20`
+`z = x+y`
+`console.log(z)`
+*/
+// Código refatorado com contexto para regras de negocio
+
+let precoProduto1 = 10; // variavel que armazena primeiro produto comprado
+let precoProduto2 = 20; // variavel que armazena segundo produto comprado
+
+// Para reaproveitamento de código, a função soma(x,y) foi reutilizada
+let totalCompra = soma(precoProduto1, precoProduto2); // Variavel recebe o resultado da compra
+
+console.log(`Valor total da compra ${totalCompra}`);
+
 
 
