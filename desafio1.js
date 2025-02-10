@@ -6,3 +6,14 @@
 let nome = 'Cledilson Pereira Pinto Filho';
 console.log(`Meu nome é ${nome}`);
 
+//----------------------------------------------------------------------------------
+// Questão 2: Crie duas variáveis: uma chamada idade e outra chamada altura. Atribua a idade o valor 25 e a altura o valor 1.75. Exiba ambos os valores.
+
+let idade = 25;
+let altura = 1.75;
+
+console.log(`Minha idade é: ${idade} e tenha ${altura} de altura.`);
+
+//----------------------------------------------------------------------------------
+
+
