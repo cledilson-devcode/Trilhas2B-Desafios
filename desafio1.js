@@ -78,4 +78,13 @@ if (numero1 == numero2) {
 idade = 29;
 console.log(`Olá, meu nome é ${nome} e eu tenho ${idade} anos.`);
 
+//----------------------------------------------------------------------------------
+// Questão 9: Crie um loop que imprima os números de 1 a 10 na tela.
 
+let i = 1;
+while (i <= 10) {
+    console.log(i);
+    i++;
+}
+
+//----------------------------------------------------------------------------------
