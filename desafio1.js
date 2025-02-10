@@ -91,7 +91,7 @@ while (i <= 10) {
 // Questão 10: Crie um loop que peça ao usuário para digitar um número até que ele digite o número 5.
 let numero;
 while (numero != 5) {
-    numero = prompt('Digite um número');
+    numero = prompt('Digite um número que seja igual a 5 ;D');
     if (numero == 5) {
         console.log('Você acertou!!');
         
@@ -105,4 +105,13 @@ while (numero != 5) {
 console.log('Tabuada de 7');
 for (let i = 1; i <= 10; i++){
     console.log(`->>> ${7*i}`);
+}
+
+//----------------------------------------------------------------------------------
+// Questão 12: Crie um loop que exiba todos os números pares de 0 a 20.
+
+for(let numeroPar = 0; numeroPar <= 20; numeroPar++){
+    if (numeroPar % 2 == 0) {
+        console.log(numeroPar);        
+    }
 }
