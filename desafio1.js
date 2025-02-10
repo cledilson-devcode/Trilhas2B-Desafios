@@ -88,3 +88,14 @@ while (i <= 10) {
 }
 
 //----------------------------------------------------------------------------------
+// Questão 10: Crie um loop que peça ao usuário para digitar um número até que ele digite o número 5.
+let numero;
+while (numero != 5) {
+    numero = prompt('Digite um número');
+    if (numero == 5) {
+        console.log('Você acertou!!');
+        
+    }else{
+        console.log(`Número está incorreto!`);
+    }
+}
