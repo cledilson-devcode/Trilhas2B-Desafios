@@ -8,6 +8,11 @@ function adicionar() {
         return;
     }
 
+    if (amigos.includes(amigo.value)) {
+        alert('Nome já está cadastrado!');
+        return;
+    }
+
     let lista = document.getElementById('lista-amigos');
     amigos.push(amigo.value);
 
