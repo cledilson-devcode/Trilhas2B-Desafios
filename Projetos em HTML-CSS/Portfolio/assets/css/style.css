@@ -12,7 +12,11 @@ body {
     color: white;
 }
 
-.titulo-destaque {
+/* MENU */
+.cabecalho__menu__link{
+    font-family: 'Monteserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
     color: #a8d2e6;
 }
 
@@ -22,6 +26,10 @@ body {
     justify-content: space-between;
     padding: 8% 15%;
     max-width: 100%;
+}
+
+.titulo-destaque {
+    color: #a8d2e6;
 }
 
 .container>img {

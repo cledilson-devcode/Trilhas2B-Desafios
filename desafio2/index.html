@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Inscrição</title>
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+</head>
+
+<body>
+
+    <main class="container">
+
+        <section class="container__formulario">
+            <div>
+                <a href="#"><img src="./assets/img/arrow-left-02.svg" /> Voltar</a>
+                <h1>Formulário de inscrição</h1>
+                <p>
+                    Preencha os dados abaixo para fazer sua inscrição no Programa Trilhas.
+                </p>
+            </div>
+
+
+
+            <form>
+                
+                <div class="form__grupo">
+                    <label class="titulo__form">Informações do participante</label>
+                    <label>Nome Completo</label>
+                    <input type="text" required>
+                
+                
+                    <label>Data de Nascimento</label>
+                    <input type="date" required>
+                
+                
+                    <label>CPF</label>
+                    <input type="text" required>
+                
+                
+                    <label>Sexo</label>
+                    <select required>
+                        <option>Masculino</option>
+                        <option>Feminino</option>
+                        <option>Outro</option>
+                    </select>
+                
+                
+                    <label>E-mail</label>
+                    <input type="email" required>
+                
+                
+                    <label>Telefone</label>
+                    <input type="tel" required>
+                
+                    <label>Documento de Identidade</label>
+                    <label for="identidade" class="documento">
+                        <input type="file" id="identidade"  required>
+                        <div>
+                            <img src="./assets/img/cloud-upload.svg" alt="enviar identidade">
+                            <p>Clique aqui para selecionar o arquivo</p>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="form__grupo">
+                    <label class="titulo__form">Endereço residencial</label>
+                    <label>CEP</label>
+                    <input type="text">
+
+
+                    <label>Rua</label>
+                    <input type="text">
+
+
+                    <label>Número</label>
+                    <input type="text">
+
+
+                    <label>Cidade</label>
+                    <input type="text">
+
+
+                    <label>Estado</label>
+                    <input type="text">
+
+                    <label>Comprovante de Residência</label>
+                    <label for="comprovante__residencia" class="documento">
+                        <input type="file" id="comprovante__residencia" required>
+                        <div>
+                            <img src="./assets/img/cloud-upload.svg" alt="enviar identidade">
+                            <p>Clique aqui para selecionar o arquivo</p>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="form__grupo">
+                    <label class="titulo__form">Trilhas de Aprendizagem</label>
+                    <label>Selecione  apenas uma trilha</label>
+                    <div class="trilhas__form">
+                        <label class="trilha">
+                            <input type="radio" name="trilha" value="frontend" checked>
+                            <div class="conteudo-trilha">
+                                <div class="icone"><img src="./assets/img/front-end.svg" alt="Ícone Front-end"></div>
+                                <span>Programação Front-end</span>
+                            </div>
+                        </label>
+                        <label class="trilha">
+                            <input type="radio" name="trilha" value="backend">
+                            <div class="conteudo-trilha">
+                                <div class="icone"><img src="./assets/img/back-end.svg" alt="Ícone Back-end"></div>
+                                <span>Programação Back-end</span>
+                            </div>
+                        </label>
+                        <label class="trilha">
+                            <input type="radio" name="trilha" value="jogos">
+                            <div class="conteudo-trilha">
+                                <div class="icone"><img src="./assets/img/back-end.svg" alt="Ícone Jogos"></div>
+                                <span>Programação de Jogos</span>
+                            </div>
+                        </label>
+                        <label class="trilha">
+                            <input type="radio" name="trilha" value="ux">
+                            <div class="conteudo-trilha">
+                                <div class="icone"><img src="./assets/img/ux.svg" alt="Ícone UX"></div>
+                                <span>Design e Experiência</span>
+                            </div>
+                        </label>
+                        <label class="trilha">
+                            <input type="radio" name="trilha" value="dados">
+                            <div class="conteudo-trilha">
+                                <div class="icone"><img src="./assets/img/dados.svg" alt="Ícone Dados"></div>
+                                <span>Ciência de Dados</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="checkbox__form">
+                    <input type="checkbox" required>
+                    <label>Declaro que li e concordo com os <a href="#">Termos e Condições</a> e a <a href="#">Política de Privacidade</a> </label>
+                </div>
+
+                <div class="botoes">
+                    <button type="reset" class="botao__cancelar">Cancelar</button>
+                    <button type="submit" class="botao__enviar">Fazer Inscrição</button>
+                </div>
+            </form>
+        </section>
+        <aside class="conteudo__imagens">
+            <img src="./assets/img/Ilustration.svg" alt="">
+            <img src="./assets/img/logo-trilhas-inova.svg" alt="">
+        </aside>
+    </main>
+
+</body>
+
+</html>

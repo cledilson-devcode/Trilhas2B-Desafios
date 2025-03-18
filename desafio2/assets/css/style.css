@@ -1,0 +1,205 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.container {
+    
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #2135A6;
+    
+}
+
+.container__formulario{
+    background: white;
+    width: 656px;
+    padding: 64px;
+    gap: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: "Poppins", sans-serif;
+}
+
+.container__formulario>div>a{
+    display: flex;
+    margin-bottom: 2%;
+}
+
+.container__formulario>div>h1{
+    font-weight: 600;
+    font-size: 24px;
+}
+.container__formulario>div>p{
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.container__formulario>form{
+    display: flex;
+    flex-direction:column;
+    gap: 24px;
+
+}
+
+.form__grupo{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.titulo__form{
+    
+    font-weight: 600;
+    font-size: 16px;
+    color: #292524;
+
+}
+
+
+.documento{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 528px;
+    height: 160px;
+    gap: 12px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+}
+
+input[type="file"]{
+    display: none;
+}
+
+.documento>div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+   
+}
+.documento>div>img{
+    width: 48px;
+}
+
+.documento>div>p{
+    font-weight: 400;
+    font-size: 16px;
+    color: #A8A29E;
+}
+
+
+label {
+    font-weight: 400;
+    font-size: 14px;
+    color: #57534E;
+    margin-top: 5px;
+}
+input,select, button {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #D6D3D1;
+    border-radius: 8px;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #292524;
+}
+
+
+.trilhas__form{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.trilha {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    width: 256px;
+    height: 120px;
+}
+
+.trilha>input{
+    width: 24px;
+    height: 24px;
+    margin: 2%;
+}
+.conteudo-trilha {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
+
+
+
+
+.checkbox__form{
+    display: flex;
+}
+.checkbox__form>input{
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+}
+.checkbox__form>label{
+    margin: 0;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.checkbox__form>label>a{
+    color: #E43A12;
+    cursor: pointer;
+}
+
+.botoes {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.botao__cancelar{
+    background-color: white;
+    color: #e53935;
+    border: 2px solid #e53935;
+}
+.botao__cancelar:hover{
+    background-color: #e53935;
+    color: white;
+    border: 2px solid white;
+}
+
+.botao__enviar{
+    background-color: white;
+    color: #0056b3;
+    border: 2px solid #0056b3;
+}
+.botao__enviar:hover{
+    background-color: #0056b3;
+    color: white;
+}
+
+
+
+.conteudo__imagens{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10% 5%;
+}
