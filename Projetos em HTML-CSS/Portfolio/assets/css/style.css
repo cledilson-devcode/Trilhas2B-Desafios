@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root{
+    font-size: 62.5%;
     --cor-primaria: #222831;
     --cor-secundaria: #EEEEEE;
     --cor-terciaria: #a8d2e6;
@@ -22,23 +23,18 @@ body {
 
 
 
-/* main{
-    transform: scale(0.8);
-} */
-
-
 /* MENU */
 .cabecalho{
     padding: 2% 0 0 15%;
 }
 .cabecalho__menu{
     display: flex;
-    gap: 80px;
+    gap: 8rem;
 }
 
 .cabecalho__menu__link{
     font-family: var(--fonte-secundaria);
-    font-size: 24px;
+    font-size: 2.4rem;
     font-weight: 600;
     color: var(--cor-terciaria);
     text-decoration: none;
@@ -50,7 +46,7 @@ body {
     align-items: flex-start;
     justify-content: space-around;
     flex-wrap: wrap;
-    gap: 50px;
+    gap: 5rem;
     padding: 5% 10.5%;
     /* max-width: 100%; */
 }
@@ -60,31 +56,31 @@ body {
 }
 
 .apresentacao>img {
-    width: 500px;
+    width: 50rem;
 }
 
 .apresentacao__container {
-    width: 615px;
+    width: 61.5rem;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 4rem;
 }
 
 .apresentacao__titulo {
     font-family: var(--fonte-primaria);
-    font-size: 36px;
+    font-size: 3.6rem;
 }
 
 .apresentacao__conteudo {
     font-family: var(--fonte-secundaria);
-    font-size: 24px;
+    font-size: 2.4rem;
     list-style: initial;
     padding: 0 0 0 4%;
 }
 
 .apresentacao__conteudo__sobre{
     font-family: var(--fonte-secundaria);
-    font-size: 24px;
+    font-size: 2.4rem;
 
 }
 
@@ -97,7 +93,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    gap: 32px;
+    gap: 3.2rem;
 }
 
 .apresentacao__conteudo__links>a {
@@ -105,13 +101,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    gap: 16px;
-    border: 2px solid var(--cor-terciaria);
-    width: 378px;
+    gap: 1.6rem;
+    border: 0.2rem solid var(--cor-terciaria);
+    width: 37.8rem;
     text-align: center;
-    border-radius: 8px;
-    padding: 21.5px 0;
-    font-size: 24px;
+    border-radius: 0.8rem;
+    padding: 2.15rem 0;
+    font-size: 2.4rem;
     text-decoration: none;
     color: var(--cor-secundaria);
     font-family: var(--fonte-secundaria);
@@ -126,14 +122,14 @@ body {
 .apresentacao__conteudo__links>h2 {
     font-family: var(--fonte-primaria);
     font-weight: 400;
-    font-size: 24px;
+    font-size: 2.4rem;
 }
 
 .rodape {
     background-color: var(--cor-quaternaria);
     color:var(--cor-primaria);
-    padding: 24px;
+    padding: 2.4rem;
     text-align: center;
     font-family: var(--fonte-secundaria);
-    font-size: 15px;
+    font-size: 1.5rem;
 }
