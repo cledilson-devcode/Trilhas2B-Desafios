@@ -18,8 +18,17 @@ for (let i = 0; i < listaTeclas.length; i++) {
     const idAudio = `#som_${instrumento}`;
     
 
-    listaTeclas[i].onclick = function () {
+    tecla.onclick = function () {
         tocarSom(idAudio);
+    }
+
+    tecla.onkeydown = function (evento) {
+        if ((evento.code == 'Enter') || (evento.code == 'Space')) {
+            tecla.classList.add('ativa');
+        }
+    }
+    tecla.onkeyup = function () {
+        tecla.classList.remove('ativa');
     }
     
 }
