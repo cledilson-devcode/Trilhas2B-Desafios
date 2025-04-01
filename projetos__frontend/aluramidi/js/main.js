@@ -2,7 +2,14 @@
 
 
 function tocarSom(idAudio) {
-    document.querySelector(idAudio).play();
+    const elemento = document.querySelector(idAudio);
+    
+    if (elemento && elemento.localName === 'audio') {
+        elemento.play();
+    }else{
+        console.log('Elemento não encontrado, ou seletor invalido');
+        
+    }
 }
 
 
@@ -23,7 +30,7 @@ for (let i = 0; i < listaTeclas.length; i++) {
     }
 
     tecla.onkeydown = function (evento) {
-        if ((evento.code == 'Enter') || (evento.code == 'Space')) {
+        if ((evento.code === 'Enter') || (evento.code === 'Space')) {
             tecla.classList.add('ativa');
         }
     }
