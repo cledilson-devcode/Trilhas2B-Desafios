@@ -1,17 +1,20 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /* Corpo principal do layout */
 .container {
-    
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     background-color: #2135A6;
-    
+
 }
 
-
+.form__container {
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
 
 .hidden {
     display: none;
@@ -19,49 +22,50 @@
 
 /* Formulario de inscrição */
 
-.container__formulario{
+.container__formulario {
     background: white;
     width: 656px;
     padding: 64px;
     gap: 48px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     font-family: "Poppins", sans-serif;
-    border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.container__formulario>div>a{
+.container__formulario>div>a {
     display: flex;
     margin-bottom: 2%;
 }
 
-.container__formulario>div>h1{
+.container__formulario>div>h1 {
     font-weight: 600;
     font-size: 24px;
 }
-.container__formulario>div>p{
+
+.container__formulario>div>p {
     font-weight: 400;
     font-size: 16px;
 }
 
-.container__formulario>form{
+.container__formulario>form {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     gap: 24px;
 
 }
 
 /* Classe para divisão entre grupos de dados dentro do formulario */
-.form__grupo{
+.form__grupo {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.titulo__form{
-    
+.titulo__form {
+
     font-weight: 600;
     font-size: 16px;
     color: #292524;
@@ -69,7 +73,7 @@
 }
 
 /* Classe para ajuste de arquivos enviados */
-.documento{
+.documento {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -81,22 +85,23 @@
     border-radius: 8px;
 }
 
-input[type="file"]{
+input[type="file"] {
     display: none;
 }
 
-.documento>div{
+.documento>div {
     display: flex;
     flex-direction: column;
     gap: 10px;
     align-items: center;
-   
+
 }
-.documento>div>img{
+
+.documento>div>img {
     width: 48px;
 }
 
-.documento>div>p{
+.documento>div>p {
     font-weight: 400;
     font-size: 16px;
     color: #A8A29E;
@@ -109,7 +114,10 @@ label {
     color: #57534E;
     margin-top: 5px;
 }
-input,select, button {
+
+input,
+select,
+button {
     width: 100%;
     padding: 8px;
     border: 1px solid #D6D3D1;
@@ -121,7 +129,7 @@ input,select, button {
 }
 
 /* Parte de ajuste da seleção da trilha de aprendizagem */
-.trilhas__form{
+.trilhas__form {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -138,11 +146,12 @@ input,select, button {
     height: 120px;
 }
 
-.trilha>input{
+.trilha>input {
     width: 24px;
     height: 24px;
     margin: 2%;
 }
+
 .conteudo-trilha {
     display: flex;
     flex-direction: column;
@@ -153,21 +162,23 @@ input,select, button {
 
 /* Termos de aceitação */
 
-.checkbox__form{
+.checkbox__form {
     display: flex;
 }
-.checkbox__form>input{
+
+.checkbox__form>input {
     width: 24px;
     height: 24px;
     margin-right: 12px;
 }
-.checkbox__form>label{
+
+.checkbox__form>label {
     margin: 0;
     font-weight: 400;
     font-size: 16px;
 }
 
-.checkbox__form>label>a{
+.checkbox__form>label>a {
     color: #E43A12;
     cursor: pointer;
 }
@@ -187,30 +198,32 @@ button {
     font-weight: 500;
 }
 
-.botao__cancelar{
+.botao__cancelar {
     background-color: white;
     color: #e53935;
     border: 2px solid #e53935;
 }
-.botao__cancelar:hover{
+
+.botao__cancelar:hover {
     background-color: #e53935;
     color: white;
     border: 2px solid white;
 }
 
-.botao__enviar{
+.botao__enviar {
     background-color: white;
     color: #0056b3;
     border: 2px solid #0056b3;
 }
-.botao__enviar:hover{
+
+.botao__enviar:hover {
     background-color: #0056b3;
     color: white;
 }
 
 
 /* Classe para ajuste de imagem */
-.conteudo__imagens{
+.conteudo__imagens {
     display: flex;
     flex-direction: column;
     align-items: center;
