@@ -11,6 +11,12 @@
     
 }
 
+
+
+.hidden {
+    display: none;
+}
+
 /* Formulario de inscrição */
 
 .container__formulario{
@@ -22,6 +28,8 @@
     flex-direction: column;
     align-items: flex-start;
     font-family: "Poppins", sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .container__formulario>div>a{
