@@ -13,8 +13,14 @@ Este projeto é puramente frontend (HTML, CSS, JavaScript) e não requer um serv
     ```bash
     git clone -n https://github.com/cledilson-devcode/Trilhas2B-Desafios.git
 
-    Depois entre na pasta do diretorio com o comando no bash: cd Trilhas2B-Desafios
-    Após isso, prossiga com o comando: git checkout HEAD desafio2-3
+    ```
+    ```bash
+    cd Trilhas2B-Desafios
+
+    ```
+    ```bash
+    git checkout HEAD desafio2-3
+    
     ```
     
 
