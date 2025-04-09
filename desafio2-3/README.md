@@ -11,12 +11,15 @@ Este projeto é puramente frontend (HTML, CSS, JavaScript) e não requer um serv
 1.  **Clone ou Baixe o Repositório:**
     Obtenha os arquivos do projeto para sua máquina local. Se estiver usando Git:
     ```bash
-    git clone <URL_DO_SEU_REPOSITORIO>
+    git clone -n https://github.com/cledilson-devcode/Trilhas2B-Desafios.git
+
+    Depois entre na pasta do diretorio com o comando no bash: cd Trilhas2B-Desafios
+    Após isso, prossiga com o comando: git checkout HEAD desafio2-3
     ```
-    Ou baixe o arquivo ZIP do projeto e extraia-o em uma pasta de sua preferência.
+    
 
 2.  **Navegue até a Pasta:**
-    Abra o terminal ou o explorador de arquivos e acesse o diretório onde você clonou ou extraiu os arquivos do projeto.
+    Abra o terminal ou o explorador de arquivos e acesse o diretório onde você clonou.
 
 3.  **Abra o Arquivo HTML:**
     Localize o arquivo HTML principal que contém os formulários (baseado no exemplo fornecido, pode ser `index.html` ou o arquivo específico que você está usando) e abra-o diretamente no seu navegador web preferido (Google Chrome, Firefox, Edge, etc.). Você pode fazer isso dando um duplo clique no arquivo.
