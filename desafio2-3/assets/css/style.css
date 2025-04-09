@@ -20,6 +20,13 @@
     display: none;
 }
 
+.error__message {
+    color: #ff4444;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
 /* Formulario de inscrição */
 
 .container__formulario {
@@ -35,7 +42,7 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.container__formulario>div>a {
+.container__formulario>a {
     display: flex;
     margin-bottom: 2%;
 }
