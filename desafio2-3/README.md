@@ -9,7 +9,7 @@ Os dados dos usuários cadastrados são armazenados localmente no navegador atra
 Este projeto é puramente frontend (HTML, CSS, JavaScript) e não requer um servidor backend complexo ou etapas de compilação para suas funcionalidades básicas de formulário e validação.
 
 1.  **Clone ou Baixe o Repositório:**
-    Obtenha os arquivos do projeto para sua máquina local. Se estiver usando Git:
+    Obtenha os arquivos do projeto para sua máquina local utilizando o Git, seguindo passo a passo cada comando:
     ```bash
     git clone -n https://github.com/cledilson-devcode/Trilhas2B-Desafios.git
 
@@ -20,7 +20,7 @@ Este projeto é puramente frontend (HTML, CSS, JavaScript) e não requer um serv
     ```
     ```bash
     git checkout HEAD desafio2-3
-    
+
     ```
     
 
