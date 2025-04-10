@@ -5,20 +5,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Seleção dos Elementos HTML Principais ---
     // Selecionamos os elementos que contêm os formulários (divs) para poder escondê-los/mostrá-los.
     const loginFormContainer = document.getElementById('loginForm'); // Container do formulário de login
-    const registerFormContainer = document.getElementById('registerForm'); // Container do formulário de registro
+    const registerFormContainer = document.getElementById('registerForm'); // Container do formulário de cadastro
 
     // Selecionamos os links que o usuário clica para alternar entre os formulários.
     const showRegisterLink = document.getElementById('showRegister'); // Link "Cadastre-se" no form de login
-    const showLoginLink = document.getElementById('showLogin'); // Link "Faça login" no form de registro
+    const showLoginLink = document.getElementById('showLogin'); // Link "Faça login" no form de cadastro
 
     // Selecionamos os elementos <form> reais, que contêm os campos e serão submetidos.
     const loginForm = document.getElementById('login'); // O formulário <form> de login
-    const registerForm = document.getElementById('register'); // O formulário <form> de registro
+    const registerForm = document.getElementById('register'); // O formulário <form> de cadastro
 
     // --- Funções Auxiliares ---
 
     /**
-     * Alterna a visibilidade dos containers dos formulários de login e registro.
+     * Alterna a visibilidade dos containers dos formulários de login e cadastro.
      * Adiciona/remove a classe 'hidden' (que deve ser definida no CSS para esconder o elemento).
      */
     function toggleForms() {
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn("Links #showRegister ou #showLogin não encontrados no HTML.");
     }
 
-    // Adiciona o listener principal para o evento 'submit' do formulário de registro.
+    // Adiciona o listener principal para o evento 'submit' do formulário de cadastro.
     if (registerForm) { // Garante que o elemento <form id="register"> existe.
         registerForm.addEventListener('submit', (e) => {
             // 1. Prevenir o Envio Padrão: Impede que o navegador envie o formulário
@@ -418,7 +418,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     } else {
         // Avisa se o elemento <form id="register"> não foi encontrado no HTML.
-        console.error("Elemento do formulário de registro (#register) não encontrado.");
+        console.error("Elemento do formulário de cadastro (#register) não encontrado.");
     }
 
     // Adiciona o listener principal para o evento 'submit' do formulário de login.
