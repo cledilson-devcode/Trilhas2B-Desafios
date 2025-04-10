@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // ATENÇÃO: Arquivos não são incluídos diretamente. Salvamos apenas os nomes.
                 // ATENÇÃO 2: Salvar senha em localStorage é INSEGURO!
                 const userData = {
-                    name: nameInput.value.trim(),
+                    name: nameInput.value.trim(), // trim verifica se existe espaço em branco para remover
                     age: ageInput.value, // Vem como string, pode converter se precisar: parseInt(ageInput.value, 10)
                     cpf: cpfInput.value.trim(),
                     sexo: sexoInput.value,
