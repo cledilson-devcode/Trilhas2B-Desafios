@@ -11,6 +11,7 @@
 }
 
 .form__container {
+    color: aliceblue;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -20,6 +21,7 @@
     display: none;
 }
 
+
 .error__message {
     color: #ff4444;
     font-size: 14px;
@@ -27,10 +29,27 @@
     display: block;
 }
 
+#login{
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+
+#login>div>label{
+    color: aliceblue;
+}
+
+
+
+#showRegister{
+    margin-left: 2px;
+    color: cyan;
+}
+
 /* Formulario de inscrição */
 
 .container__formulario {
-    background: white;
+    /* background: white; */
     width: 656px;
     padding: 64px;
     gap: 48px;
@@ -39,11 +58,21 @@
     justify-content: center;
     align-items: center;
     font-family: "Poppins", sans-serif;
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
+}
+
+#registerForm{
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
+
+
 .container__formulario>a {
     display: flex;
+    color: aliceblue;
     margin-bottom: 2%;
 }
 
@@ -69,6 +98,14 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+p.form__grupo{
+    margin-top: 10px;
+    flex-direction: row;
+}
+p.form__grupo>a{
+    color: #0056b3;
 }
 
 .titulo__form {
