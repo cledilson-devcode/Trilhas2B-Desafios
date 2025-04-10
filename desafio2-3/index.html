@@ -61,6 +61,7 @@
                             <option value="feminino">Feminino</option>
                             <option value="outro">Outro</option>
                         </select>
+                        <span class="error__message"></span> 
 
 
                         <label>E-mail</label>
@@ -68,7 +69,7 @@
                         <span class="error__message"></span>
 
                         <label for="telefone">Telefone</label>
-                        <input type="tel" id="telefone"  required>
+                        <input type="tel" id="telefone" required>
                         <span class="error__message"></span>
 
                         <label>Documento de Identidade</label>
@@ -78,6 +79,8 @@
                                 <img src="./assets/img/cloud-upload.svg" alt="enviar identidade">
                                 <p>Clique aqui para selecionar o arquivo</p>
                             </div>
+                            <span class="error__message"
+                                style="width: 100%; text-align: center; margin-top: 5px;"></span>
                         </label>
                     </div>
 
@@ -85,22 +88,15 @@
                         <label class="titulo__form">Endereço residencial</label>
                         <label for="cep">CEP</label>
                         <input type="text" id="cep" required>
-
-
-                        <label for="rua">Rua</label>
+                        <span class="error__message"></span> <label for="rua">Rua</label>
                         <input type="text" id="rua" required>
-
-
-                        <label for="numCasa">Número</label>
+                        <span class="error__message"></span> <label for="numCasa">Número</label>
                         <input type="text" id="numCasa" required>
-
-
-                        <label for="cidade">Cidade</label>
+                        <span class="error__message"></span> <label for="cidade">Cidade</label>
                         <input type="text" id="cidade" required>
-
-
-                        <label for="estado">Estado</label>
+                        <span class="error__message"></span> <label for="estado">Estado</label>
                         <input type="text" id="estado" required>
+                        <span class="error__message"></span>
 
                         <label>Comprovante de Residência</label>
                         <label for="comprovante__residencia" class="documento">
@@ -109,6 +105,8 @@
                                 <img src="./assets/img/cloud-upload.svg" alt="enviar identidade">
                                 <p>Clique aqui para selecionar o arquivo</p>
                             </div>
+                            <span class="error__message"
+                                style="width: 100%; text-align: center; margin-top: 5px;"></span>
                         </label>
                     </div>
 
@@ -157,25 +155,25 @@
                                     <span>Ciência de Dados</span>
                                 </div>
                             </label>
-
+                            <span class="error__message" style="width: 100%; margin-top: 10px;"></span>
                         </div>
                     </div>
 
                     <div class="form__grupo">
                         <label for="userId">ID do Usuário:</label>
                         <input type="text" id="userId" required>
-                        <span class="error-message"></span>
+                        <span class="error__message"></span>
                     </div>
                     <div class="form__grupo">
                         <label for="password">Senha:</label>
                         <input type="password" id="password" required>
-                        <span class="error-message"></span>
+                         <span class="error__message"></span>
                     </div>
 
                     <div class="checkbox__form">
-                        <input type="checkbox" required>
-                        <label>Declaro que li e concordo com os <a href="#">Termos e Condições</a> e a <a
+                        <input type="checkbox" required id="termos"> <label for="termos">Declaro que li e concordo com os <a href="#">Termos e Condições</a> e a <a
                                 href="#">Política de Privacidade</a> </label>
+                         <span class="error__message" style="width: 100%; margin-left: 36px;"></span>
                     </div>
 
                     <div class="botoes ">

@@ -61,83 +61,83 @@ document.addEventListener('DOMContentLoaded', function() {
     /**
      * Exibe uma mensagem de erro associada a um campo de input específico.
      * Adiciona a classe 'error' ao input e tenta exibir a mensagem em um span.error__message próximo.
-     * @param {HTMLElement} inputElement - O elemento de input (<input>, <select>, etc.) que está inválido.
+     * @param {HTMLElement} inputElement - O elemento de input (<input>, <select>, etc.) ou container (para radio/checkbox/file) que está inválido.
      * @param {string} message - A mensagem de erro a ser exibida.
      */
     function showError(inputElement, message) {
-        // Adiciona a classe 'error' ao input para que possa ser estilizado via CSS (ex: borda vermelha).
+        // Adiciona a classe 'error' ao input/container para que possa ser estilizado via CSS (ex: borda vermelha).
         inputElement.classList.add('error');
 
         // Tenta encontrar o elemento HTML onde a mensagem de erro deve ser exibida.
         let errorMessageElement = null;
+        let searchContainer = null; // O elemento onde procuraremos pelo span de erro
 
-        // 1. Verifica se o elemento *imediatamente seguinte* ao input tem a classe '.error__message'.
-        // Isso funciona bem se o span de erro estiver logo após o input no HTML.
+        // Lógica para encontrar o span de erro:
+        // 1. Para inputs normais (text, email, number, select, etc.):
+        //    Verifica se o elemento *imediatamente seguinte* ao input tem a classe '.error__message'.
         if (inputElement.nextElementSibling && inputElement.nextElementSibling.classList.contains('error__message')) {
             errorMessageElement = inputElement.nextElementSibling;
-        } else {
-            // 2. Se não for o irmão seguinte, procura pelo contêiner pai mais próximo que agrupa
-            //    o label, input e erro (ex: .form__grupo, .form-group, etc.).
-            const parentGroup = inputElement.closest('.form__grupo, .form-group, .documento, .checkbox__form, .trilhas__form');
-            if (parentGroup) {
-                // Dentro desse grupo, procura por um elemento com a classe '.error__message'.
-                errorMessageElement = parentGroup.querySelector('.error__message');
+            searchContainer = inputElement.parentElement; // O pai direto geralmente é o container
+        }
+        // 2. Fallback ou casos especiais (file, radio group, checkbox group):
+        //    Procura pelo contêiner pai mais apropriado.
+        else {
+            // Trata containers passados diretamente (como para radio/checkbox/file)
+            if (inputElement.classList.contains('documento') || inputElement.classList.contains('trilhas__form') || inputElement.classList.contains('checkbox__form')) {
+                 searchContainer = inputElement;
+            // Senão, busca o pai mais próximo que agrupa label/input/erro
+            } else {
+                searchContainer = inputElement.closest('.form__grupo, .form-group, .documento, .checkbox__form, .trilhas__form');
+            }
 
-                // Tratamentos especiais para estruturas mais complexas no HTML fornecido:
-                // Para inputs de arquivo que estão dentro de uma label com classe 'documento'.
-                if (inputElement.type === 'file' && inputElement.parentElement?.classList.contains('documento')) {
-                    // Procura o span de erro dentro da label 'documento'.
-                    errorMessageElement = inputElement.parentElement.querySelector('.error__message');
-                }
-                // Para o grupo de radio buttons (trilhas).
-                if (inputElement.type === 'radio' && parentGroup.classList.contains('trilhas__form')) {
-                    // Procura um span de erro associado ao container do grupo de rádios.
-                    errorMessageElement = parentGroup.querySelector('.error__message');
-                 }
-                 // Para a checkbox de termos
-                 if (inputElement.type === 'checkbox' && parentGroup.classList.contains('checkbox__form')) {
-                    errorMessageElement = parentGroup.querySelector('.error__message');
-                 }
+            // Dentro do container encontrado, procura por um elemento com a classe '.error__message'.
+            if (searchContainer) {
+                errorMessageElement = searchContainer.querySelector('.error__message');
+
+                 // Se ainda não encontrou e for um input file dentro de .documento
+                 // (O span agora deve estar dentro do .documento, então a busca acima deve encontrá-lo)
+                 // if (!errorMessageElement && inputElement.type === 'file' && searchContainer.classList.contains('documento')) {
+                 //     errorMessageElement = searchContainer.querySelector('.error__message');
+                 // }
             }
         }
+
 
         // Se encontrou um elemento para exibir a mensagem:
         if (errorMessageElement) {
             errorMessageElement.textContent = message; // Define o texto da mensagem.
-            errorMessageElement.style.display = 'block'; // Garante que o span esteja visível (CSS pode escondê-lo por padrão).
+            errorMessageElement.style.display = 'block'; // Garante que o span esteja visível.
         } else {
             // Se não encontrou um span de erro específico no HTML:
             // Loga um aviso no console para o desenvolvedor. É recomendado adicionar o span no HTML.
-            console.warn(`Não foi encontrado o span .error__message para o input: ${inputElement.id || inputElement.name}`, inputElement);
+            console.warn(`Não foi encontrado o span .error__message para o input/container: ${inputElement.id || inputElement.name || inputElement.classList[0]}`, inputElement);
             // Neste caso, apenas a classe 'error' no input dará o feedback visual.
         }
     }
 
     /**
-     * Remove a mensagem de erro e a classe 'error' de um campo de input específico.
-     * @param {HTMLElement} inputElement - O elemento de input do qual remover o erro.
+     * Remove a mensagem de erro e a classe 'error' de um campo de input/container específico.
+     * @param {HTMLElement} inputElement - O elemento de input/container do qual remover o erro.
      */
     function removeError(inputElement) {
-        // Remove a classe 'error' do input, revertendo qualquer estilo de erro aplicado via CSS.
+        // Remove a classe 'error' do input/container, revertendo qualquer estilo de erro aplicado via CSS.
         inputElement.classList.remove('error');
 
         // Tenta encontrar o span de erro associado usando a mesma lógica da função showError.
         let errorMessageElement = null;
+        let searchContainer = null;
+
         if (inputElement.nextElementSibling && inputElement.nextElementSibling.classList.contains('error__message')) {
            errorMessageElement = inputElement.nextElementSibling;
+           searchContainer = inputElement.parentElement;
         } else {
-           const parentGroup = inputElement.closest('.form__grupo, .form-group, .documento, .checkbox__form, .trilhas__form');
-            if (parentGroup) {
-                errorMessageElement = parentGroup.querySelector('.error__message');
-                 if (inputElement.type === 'file' && inputElement.parentElement?.classList.contains('documento')) {
-                    errorMessageElement = inputElement.parentElement.querySelector('.error__message');
-                }
-                if (inputElement.type === 'radio' && parentGroup.classList.contains('trilhas__form')) {
-                    errorMessageElement = parentGroup.querySelector('.error__message');
-                }
-                if (inputElement.type === 'checkbox' && parentGroup.classList.contains('checkbox__form')) {
-                    errorMessageElement = parentGroup.querySelector('.error__message');
-                 }
+            if (inputElement.classList.contains('documento') || inputElement.classList.contains('trilhas__form') || inputElement.classList.contains('checkbox__form')) {
+                 searchContainer = inputElement;
+            } else {
+                searchContainer = inputElement.closest('.form__grupo, .form-group, .documento, .checkbox__form, .trilhas__form');
+            }
+            if (searchContainer) {
+                errorMessageElement = searchContainer.querySelector('.error__message');
             }
         }
 
@@ -206,84 +206,82 @@ document.addEventListener('DOMContentLoaded', function() {
     // Adiciona o listener principal para o evento 'submit' do formulário de cadastro.
     if (registerForm) { // Garante que o elemento <form id="register"> existe.
         registerForm.addEventListener('submit', (e) => {
-            // 1. Prevenir o Envio Padrão: Impede que o navegador envie o formulário
-            // da maneira tradicional (o que causaria um recarregamento da página).
-            // Nós queremos controlar o envio e a validação com JavaScript.
+            // 1. Prevenir o Envio Padrão:
             e.preventDefault();
 
-            // 2. Flag de Validação: Variável para rastrear se todos os campos passam na validação.
-            // Começa como true e se torna false se qualquer campo falhar.
+            // 2. Flag de Validação:
             let isValid = true;
 
-            // --- 3. Obter Referências aos Elementos de Input ---
-            // Pegamos todos os elementos de input/select/etc. que precisamos validar ou ler.
-            // Fazer isso aqui evita repetir document.getElementById dentro das validações.
+            // --- 3. Obter Referências aos Elementos de Input e Containers ---
             const nameInput = document.getElementById('nome');
             const ageInput = document.getElementById('age');
             const cpfInput = document.getElementById('cpf');
-            const sexoInput = document.getElementById('sexo'); // <select>
+            const sexoInput = document.getElementById('sexo');
             const emailInput = document.getElementById('email');
             const telefoneInput = document.getElementById('telefone');
-            const identidadeInput = document.getElementById('identidade'); // <input type="file">
+            const identidadeInput = document.getElementById('identidade');
+            const identidadeContainer = identidadeInput?.closest('.documento'); // Container do input file
             const cepInput = document.getElementById('cep');
             const ruaInput = document.getElementById('rua');
             const numCasaInput = document.getElementById('numCasa');
             const cidadeInput = document.getElementById('cidade');
             const estadoInput = document.getElementById('estado');
-            const residenciaInput = document.getElementById('comprovante__residencia'); // <input type="file">
-            const trilhaCheckedInput = document.querySelector('input[name="trilha"]:checked'); // O radio button selecionado
-            const trilhaContainer = document.querySelector('.trilhas__form'); // Div que contém os radios (para erro)
+            const residenciaInput = document.getElementById('comprovante__residencia');
+            const residenciaContainer = residenciaInput?.closest('.documento'); // Container do input file
+            const trilhaCheckedInput = document.querySelector('input[name="trilha"]:checked');
+            const trilhaContainer = document.querySelector('.trilhas__form'); // Div que contém os radios
             const userIdInput = document.getElementById('userId');
             const passwordInput = document.getElementById('password');
-            // Seleciona a checkbox de termos (HTML precisa ter input dentro de .checkbox__form)
-            const termosCheckbox = document.querySelector('.checkbox__form input[type="checkbox"]');
-            const termosContainer = document.querySelector('.checkbox__form'); // Div dos termos (para erro)
+            // *** AJUSTE: Selecionar checkbox pelo ID adicionado no HTML ***
+            const termosCheckbox = document.getElementById('termos');
+            const termosContainer = document.querySelector('.checkbox__form'); // Div dos termos
 
             // --- 4. Validações Individuais ---
-            // Para cada campo, primeiro removemos qualquer erro anterior (removeError)
-            // e depois aplicamos as regras de validação. Se inválido, exibimos o erro (showError)
-            // e marcamos o formulário como inválido (isValid = false).
 
             // Função auxiliar interna para simplificar a lógica de validação repetitiva
-            function validateField(input, validationFn, emptyMsg, invalidMsg = null) {
-                 // Segurança: Verifica se o input foi encontrado no HTML.
-                 if (!input) {
-                     console.error(`Elemento de input não encontrado durante a validação (verifique o ID ou seletor).`);
-                     isValid = false; // Considera inválido se o campo nem existe.
+            function validateField(input, validationFn, emptyMsg, invalidMsg = null, container = null) {
+                 const targetElement = container || input; // Elemento onde o erro será mostrado/classe aplicada
+                 // Segurança: Verifica se o input/container foi encontrado no HTML.
+                 if (!input || !targetElement) {
+                     console.error(`Elemento de input/container não encontrado durante a validação. Input:`, input, "Container:", container);
+                     isValid = false;
                      return;
                  }
-                 // Limpa erro anterior deste campo.
-                removeError(input);
-                // Obtém o valor de forma apropriada para cada tipo de input.
+                 // Limpa erro anterior deste campo/container.
+                removeError(targetElement);
+
                 const value = input.type === 'checkbox' ? input.checked : (input.type === 'file' ? input.files : input.value);
 
                 // Validação para Checkbox (termos)
                 if (input.type === 'checkbox') {
                     if (!value) { // Se não estiver marcado (checked = false)
-                        // Mostra erro no container ou, se não encontrar, no próprio input (menos ideal).
-                        showError(termosContainer || input, emptyMsg);
+                        showError(targetElement, emptyMsg);
                         isValid = false;
                     }
                 // Validação para Arquivo (identidade, residencia)
                 } else if (input.type === 'file') {
-                    if (value.length === 0) { // Se nenhum arquivo foi selecionado (FileList está vazio)
-                        showError(input, emptyMsg);
+                    if (value.length === 0) { // Se nenhum arquivo foi selecionado
+                        // Passamos o container (a label .documento) para showError
+                        showError(targetElement, emptyMsg);
                         isValid = false;
                     }
                 // Validação para outros tipos (text, number, email, tel, select, password)
-                } else if (typeof value === 'string') { // Garante que é string para usar trim()
-                     // Caso especial: Select pode ter value="" como válido se for a opção padrão "Selecione"
-                     if(input.tagName === 'SELECT' && !value) { // Se for select e o valor for vazio (não selecionou nada útil)
-                         showError(input, emptyMsg);
+                } else if (typeof value === 'string' || typeof value === 'number') { // Checa se é string ou number
+                     // Caso especial: Select deve ter um valor selecionado (diferente de "" ou valor padrão)
+                     if(input.tagName === 'SELECT' && !value) {
+                         showError(targetElement, emptyMsg);
                          isValid = false;
-                     // Para outros campos de texto, verifica se está vazio após remover espaços em branco (trim).
-                     } else if(input.tagName !== 'SELECT' && !value.trim()){
-                         showError(input, emptyMsg);
+                     // Para outros campos, verifica se está vazio após remover espaços em branco (trim).
+                     } else if(input.tagName !== 'SELECT' && typeof value === 'string' && !value.trim()){
+                         showError(targetElement, emptyMsg);
+                         isValid = false;
+                      // Para campos numéricos (poderia ser type="number")
+                     } else if (typeof value === 'number' && isNaN(value)) { // Verifica se é Not-a-Number
+                         showError(targetElement, emptyMsg); // Ou uma mensagem específica para número
                          isValid = false;
                      // Se não está vazio, mas existe uma função de validação específica (ex: email, idade) e ela falha...
                      } else if (invalidMsg && validationFn && !validationFn(value)) {
-                         // ...mostra a mensagem de formato inválido.
-                         showError(input, invalidMsg);
+                         showError(targetElement, invalidMsg);
                          isValid = false;
                      }
                 }
@@ -293,212 +291,190 @@ document.addEventListener('DOMContentLoaded', function() {
              validateField(nameInput, null, 'Nome completo é obrigatório');
              validateField(emailInput, validateEmail, 'Email é obrigatório', 'Formato de email inválido');
              validateField(ageInput, validateAge, 'Idade é obrigatória', 'Idade deve ser um número entre 0 e 120');
-             validateField(cpfInput, null, 'CPF é obrigatório'); // Poderia adicionar validação de formato para CPF aqui
-             validateField(sexoInput, null, 'Seleção de sexo é obrigatória'); // Valida se value não é "" (assumindo option padrão tem value="")
-             validateField(telefoneInput, null, 'Telefone é obrigatório'); // Poderia adicionar validação de formato para telefone
-             validateField(identidadeInput, null, 'Comprovante de identidade (arquivo) é obrigatório');
-             validateField(cepInput, null, 'CEP é obrigatório'); // Poderia adicionar validação de formato ou busca ViaCEP
+             validateField(cpfInput, null, 'CPF é obrigatório'); // Adicionar validação de formato se necessário
+             validateField(sexoInput, null, 'Seleção de sexo é obrigatória'); // Valida se value não é ""
+             validateField(telefoneInput, null, 'Telefone é obrigatório'); // Adicionar validação de formato se necessário
+             // Para arquivos, passamos o container para a validação/showError
+             validateField(identidadeInput, null, 'Comprovante de identidade (arquivo) é obrigatório', null, identidadeContainer);
+             validateField(cepInput, null, 'CEP é obrigatório'); // Adicionar validação/busca ViaCEP se necessário
              validateField(ruaInput, null, 'Rua é obrigatória');
              validateField(numCasaInput, null, 'Número é obrigatório');
              validateField(cidadeInput, null, 'Cidade é obrigatória');
              validateField(estadoInput, null, 'Estado é obrigatório');
-             validateField(residenciaInput, null, 'Comprovante de residência (arquivo) é obrigatório');
+             // Para arquivos, passamos o container para a validação/showError
+             validateField(residenciaInput, null, 'Comprovante de residência (arquivo) é obrigatório', null, residenciaContainer);
              validateField(userIdInput, null, 'ID de usuário é obrigatório');
 
-             // Validação de Senha (não usa validateField por ter lógica específica e não usar trim)
-             removeError(passwordInput); // Limpa erro anterior
-             if (!passwordInput.value) { // Verifica se está vazia
+             // Validação de Senha (lógica específica)
+             removeError(passwordInput);
+             if (!passwordInput.value) {
                  showError(passwordInput, 'Senha é obrigatória');
                  isValid = false;
-             } else if (passwordInput.value.length < 6) { // Verifica tamanho mínimo
+             } else if (passwordInput.value.length < 6) {
                  showError(passwordInput, 'Senha deve ter no mínimo 6 caracteres');
                  isValid = false;
              }
 
-              // Validação da Checkbox de Termos
-              if(termosCheckbox) {
-                // Usa validateField para verificar se está marcada (checked).
-                validateField(termosCheckbox, null, 'Você deve aceitar os Termos e Condições');
-              } else {
-                // Avisa se a checkbox não foi encontrada (importante para o fluxo).
-                console.warn("Checkbox de Termos (.checkbox__form input[type='checkbox']) não encontrada no HTML.");
-                // Pode decidir se isso deve invalidar o formulário: isValid = false;
-              }
+             // Validação da Checkbox de Termos (usando o container)
+             if (termosCheckbox && termosContainer) {
+                validateField(termosCheckbox, null, 'Você deve aceitar os Termos e Condições', null, termosContainer);
+             } else {
+                console.warn("Checkbox de Termos (#termos) ou seu container (.checkbox__form) não encontrados.");
+                // isValid = false; // Considerar inválido se a checkbox for crucial
+             }
 
              // Validação do Grupo de Radio Buttons (Trilha)
-             if(trilhaContainer) { // Se o container dos rádios foi encontrado...
-                removeError(trilhaContainer); // ...tenta limpar erro anterior associado a ele.
+             if (trilhaContainer) {
+                 removeError(trilhaContainer); // Limpa erro anterior do container
+                 if (!trilhaCheckedInput) { // Se nenhum radio está marcado
+                     // Mostra erro no container das trilhas
+                     showError(trilhaContainer, 'Seleção de trilha é obrigatória');
+                     isValid = false;
+                 }
              } else {
-                console.warn("Container .trilhas__form não encontrado para exibir erro de seleção de trilha.");
-             }
-
-             if (!trilhaCheckedInput) { // Se nenhum radio com name="trilha" está marcado...
-                 // Tenta exibir o erro no container (se ele existir e tiver um .error__message).
-                  const trilhaErrorSpan = trilhaContainer?.querySelector('.error__message');
-                  if(trilhaErrorSpan && trilhaContainer) {
-                      // Mostra erro associado ao container (precisa de um span .error__message dentro dele no HTML).
-                      // Passamos o próprio container como 'input' para showError encontrar o span dentro dele.
-                      showError(trilhaContainer, 'Seleção de trilha é obrigatória');
-                  } else if (trilhaContainer) {
-                      // Se não tem span, adiciona classe de erro ao container (precisa de CSS) e dá um alerta.
-                      trilhaContainer.classList.add('error');
-                      alert('Por favor, selecione uma trilha de aprendizagem.');
-                  } else {
-                     // Se nem o container foi achado, apenas um alerta genérico.
+                 console.warn("Container .trilhas__form não encontrado para validação/erro.");
+                 if (!trilhaCheckedInput) { // Se container não existe mas seleção é obrigatória
                      alert('Por favor, selecione uma trilha de aprendizagem.');
-                  }
-                 isValid = false; // Marca o formulário como inválido.
-             } else if(trilhaContainer) { // Se estava válido ou foi corrigido...
-                 // ...remove a classe de erro do container e garante que a msg de erro (se houver) está limpa/oculta.
-                 trilhaContainer.classList.remove('error');
-                 const trilhaErrorSpan = trilhaContainer.querySelector('.error__message');
-                 if(trilhaErrorSpan) {
-                     trilhaErrorSpan.textContent = '';
-                     trilhaErrorSpan.style.display = 'none';
+                     isValid = false;
                  }
              }
-             // Guarda o valor da trilha selecionada (ou null se inválido).
              const trilhaSelecionadaValue = trilhaCheckedInput ? trilhaCheckedInput.value : null;
 
 
             // --- 5. Processamento Após Validação ---
-            if (isValid) { // Se NENHUM erro foi encontrado...
+            if (isValid) {
                 console.log('Formulário válido. Preparando para salvar...');
 
                 // Monta um objeto com os dados do formulário para salvar.
-                // ATENÇÃO: Arquivos não são incluídos diretamente. Salvamos apenas os nomes como referência.
-                // ATENÇÃO 2: Salvar senha em localStorage é INSEGURO! Apenas para fins deste exemplo.
+                // ATENÇÃO: Arquivos não são incluídos diretamente. Salvamos apenas os nomes.
+                // ATENÇÃO 2: Salvar senha em localStorage é INSEGURO!
                 const userData = {
-                    name: nameInput.value.trim(), // Usar trim() aqui para limpar espaços extras
-                    age: ageInput.value,
+                    name: nameInput.value.trim(),
+                    age: ageInput.value, // Vem como string, pode converter se precisar: parseInt(ageInput.value, 10)
                     cpf: cpfInput.value.trim(),
                     sexo: sexoInput.value,
                     email: emailInput.value.trim(),
                     telefone: telefoneInput.value.trim(),
-                    identidadeFilename: identidadeInput.files.length > 0 ? identidadeInput.files[0].name : null, // Nome do arquivo ou null
+                    identidadeFilename: identidadeInput.files.length > 0 ? identidadeInput.files[0].name : null,
                     cep: cepInput.value.trim(),
                     rua: ruaInput.value.trim(),
                     numCasa: numCasaInput.value.trim(),
                     cidade: cidadeInput.value.trim(),
                     estado: estadoInput.value.trim(),
-                    residenciaFilename: residenciaInput.files.length > 0 ? residenciaInput.files[0].name : null, // Nome do arquivo ou null
+                    residenciaFilename: residenciaInput.files.length > 0 ? residenciaInput.files[0].name : null,
                     trilha: trilhaSelecionadaValue,
                     userId: userIdInput.value.trim(),
-                    password: passwordInput.value // Senha NÃO deve ter trim()
+                    password: passwordInput.value // SENHA NUNCA USAR trim()
                 };
 
                 // Tenta salvar os dados no localStorage.
                 const saved = saveUser(userData);
 
-                // Se o salvamento foi bem-sucedido (saveUser retornou true)...
                 if (saved) {
                     alert('Cadastro realizado com sucesso!');
-                    registerForm.reset(); // Limpa todos os campos do formulário.
+                    registerForm.reset(); // Limpa os campos do formulário.
 
-                    // Limpa o feedback visual dos campos de arquivo (o texto dentro do <p>).
-                    // É preciso fazer isso manualmente pois reset() não afeta o conteúdo de outros elementos.
+                    // Limpa manualmente o texto dos <p> dentro dos labels de arquivo
                     document.querySelectorAll('.documento p').forEach(p => p.textContent = 'Clique aqui para selecionar o arquivo');
-
-                    // Opcional: Descomente a linha abaixo para voltar automaticamente para a tela de login após o cadastro.
+                    // Remove classes de erro remanescentes (reset pode não fazer isso)
+                     document.querySelectorAll('.error').forEach(el => removeError(el));
+                    // Opcional: Voltar para a tela de login
                     // toggleForms();
                 }
-                // Se saved for false (ex: ID duplicado), a função saveUser já exibiu o alerta/erro.
+                // Se saved for false, saveUser já mostrou o erro (ex: ID duplicado).
 
-            } else { // Se isValid for false...
+            } else {
                 console.log('Formulário inválido. Corrija os erros indicados.');
-                // Tenta focar no primeiro campo que contém a classe 'error' para ajudar o usuário.
-                 const firstError = registerForm.querySelector('.error');
-                 if (firstError) {
-                     firstError.focus(); // Coloca o cursor no primeiro campo inválido.
+                // Tenta focar no primeiro campo/container que contém a classe 'error'.
+                 const firstErrorElement = registerForm.querySelector('.error');
+                 if (firstErrorElement) {
+                      // Se for um container (file, radio, checkbox), foca no primeiro input dentro dele
+                     if (firstErrorElement.classList.contains('documento') || firstErrorElement.classList.contains('trilhas__form') || firstErrorElement.classList.contains('checkbox__form')) {
+                         const focusableInput = firstErrorElement.querySelector('input, select, textarea');
+                         if (focusableInput) focusableInput.focus();
+                     } else {
+                        firstErrorElement.focus(); // Foca diretamente no input/select
+                     }
                  } else {
-                     // Se, por algum motivo, nenhum campo tem a classe .error, dá um alerta genérico.
                      alert('Por favor, corrija os campos inválidos.');
                  }
             }
         });
     } else {
-        // Avisa se o elemento <form id="register"> não foi encontrado no HTML.
         console.error("Elemento do formulário de cadastro (#register) não encontrado.");
     }
 
     // Adiciona o listener principal para o evento 'submit' do formulário de login.
-    if (loginForm) { // Garante que o elemento <form id="login"> existe.
+    if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
-            // 1. Prevenir o Envio Padrão
             e.preventDefault();
-            let loginIsValid = true; // Flag de validação para o login
+            let loginIsValid = true;
 
-            // 2. Obter Inputs de Login
             const loginIdInput = document.getElementById('loginId');
             const loginPasswordInput = document.getElementById('loginPassword');
 
-            // 3. Garantir Spans de Erro (Opcional, mas ajuda se HTML estiver incompleto)
-            // Esta função verifica se existe um span de erro; se não, cria um dinamicamente.
-            // É MELHOR ter os spans diretamente no HTML!
-             function ensureErrorSpan(input) {
-                 if (!input) return; // Sai se o input não foi encontrado
-                 const parent = input.parentElement; // Pega o elemento pai (geralmente .form-group)
-                 // Se o pai existe e NÃO contém um span .error__message...
-                 if (parent && !parent.querySelector('.error__message')) {
-                     const span = document.createElement('span'); // Cria o span
-                     span.className = 'error__message'; // Define a classe
-                     // Estilos básicos para visibilidade
-                     span.style.color = 'red';
-                     span.style.display = 'none'; // Começa oculto
-                     span.style.fontSize = '0.8em';
-                     parent.appendChild(span); // Adiciona o span ao final do elemento pai
-                     console.warn(`Adicionado dinamicamente .error__message para #${input.id}. É recomendado adicionar este span ao HTML.`);
+            // Função simples para garantir spans de erro no login (melhor ter no HTML)
+             function ensureLoginErrorSpan(input) {
+                 if (!input) return;
+                 if (!input.nextElementSibling || !input.nextElementSibling.classList.contains('error__message')) {
+                      // Verifica se já existe no pai (caso o input não seja o último filho)
+                      const parent = input.parentElement;
+                      if(parent && !parent.querySelector('.error__message')) {
+                         const span = document.createElement('span');
+                         span.className = 'error__message';
+                         span.style.display = 'none'; // Começa oculto
+                         // Adiciona DEPOIS do input
+                         input.parentNode.insertBefore(span, input.nextSibling);
+                         console.warn(`Adicionado dinamicamente .error__message para #${input.id} no login.`);
+                      } else if(!parent) {
+                          console.warn(`Não foi possível adicionar span de erro para #${input.id} (sem elemento pai).`);
+                      }
                  }
              }
-             ensureErrorSpan(loginIdInput);
-             ensureErrorSpan(loginPasswordInput);
+             ensureLoginErrorSpan(loginIdInput);
+             ensureLoginErrorSpan(loginPasswordInput);
 
-            // 4. Validar Campos de Login
-            removeError(loginIdInput); // Limpa erro anterior
-            if (!loginIdInput.value.trim()) { // Verifica se ID está vazio
+            // Validar Campos de Login
+            removeError(loginIdInput);
+            if (!loginIdInput.value.trim()) {
                 showError(loginIdInput, 'ID do usuário é obrigatório.');
                 loginIsValid = false;
             }
-            removeError(loginPasswordInput); // Limpa erro anterior
-            if (!loginPasswordInput.value) { // Verifica se Senha está vazia (sem trim)
+            removeError(loginPasswordInput);
+            if (!loginPasswordInput.value) {
                 showError(loginPasswordInput, 'Senha é obrigatória.');
                 loginIsValid = false;
             }
 
-            // Se ID ou Senha estiverem vazios, não continua a verificação.
             if (!loginIsValid) return;
 
-            // 5. Verificar Credenciais no localStorage
+            // Verificar Credenciais no localStorage
             try {
-                // Obtém a lista de usuários.
                 const users = JSON.parse(localStorage.getItem('users') || '[]');
-                // Procura por um usuário que tenha o ID E a senha correspondentes.
-                // ATENÇÃO: Comparar senhas diretamente assim é INSEGURO! Em um sistema real,
-                // senhas devem ser tratadas com hashing.
+                // ATENÇÃO: Comparação de senha insegura! Apenas para exemplo.
                 const user = users.find(u => u.userId === loginIdInput.value && u.password === loginPasswordInput.value);
 
-                // 6. Processar Resultado
-                if (user) { // Se encontrou um usuário correspondente...
+                if (user) {
                     alert('Login realizado com sucesso!');
-                    loginForm.reset(); // Limpa os campos do formulário de login.
-                    // Aqui você redirecionaria o usuário ou atualizaria a interface.
-                    // Exemplo: window.location.href = '/pagina-principal.html';
-                } else { // Se não encontrou usuário com essas credenciais...
-                    // Mostra erro nos campos para indicar o problema.
+                    loginForm.reset();
+                    removeError(loginIdInput); // Limpa erros após sucesso
+                    removeError(loginPasswordInput);
+                    // Redirecionar ou atualizar UI aqui
+                    // Ex: window.location.href = '/dashboard.html';
+                } else {
                     showError(loginIdInput, 'ID do usuário ou senha incorretos.');
-                    // Mostra estado de erro na senha também, mas sem repetir a msg.
-                    showError(loginPasswordInput, ' '); // Usa espaço para ativar o estilo de erro sem texto duplicado
-                    // O alert abaixo é opcional, pois os campos já indicam o erro visualmente.
-                    // alert('ID do usuário ou senha incorretos!');
+                    // Mostra erro na senha também, mas sem texto duplicado para não poluir
+                    // Apenas aplica a classe .error visualmente
+                    loginPasswordInput.classList.add('error'); // Adiciona classe diretamente
+                    // Opcionalmente, pode-se usar showError com espaço se o CSS não estilizar só com .error
+                    // showError(loginPasswordInput, ' ');
                 }
             } catch (error) {
-                // Se houver erro ao ler/processar o localStorage.
                 console.error("Erro ao ler usuários do localStorage durante o login:", error);
                 alert("Ocorreu um erro ao tentar fazer login. Tente novamente.");
             }
         });
     } else {
-        // Avisa se o elemento <form id="login"> não foi encontrado no HTML.
         console.error("Elemento do formulário de login (#login) não encontrado.");
     }
 

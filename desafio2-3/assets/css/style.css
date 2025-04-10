@@ -24,10 +24,33 @@
 
 
 .error__message {
-    color: #ff4444;
-    font-size: 14px;
-    margin-top: 5px;
-    display: block;
+    color: #ff4444; /* Cor vermelha para erro */
+    font-size: 14px; /* Tamanho da fonte */
+    margin-top: 5px; /* Espaço acima da mensagem */
+    /* display: block; */ /* REMOVER ou comentar esta linha */
+    display: none; /* ADICIONAR esta linha - esconde por padrão */
+    width: 100%; /* Opcional: Garante que ocupe a largura */
+}
+
+/* Adiciona uma borda vermelha aos inputs com erro */
+input.error,
+select.error,
+textarea.error { /* Adicione textarea se usar */
+    border-color: #ff4444; /* Cor da borda vermelha */
+    /* background-color: #fff0f0; */ /* Opcional: fundo levemente rosado */
+}
+
+/* Opcional: Estilo para containers com erro (ex: file, radio, checkbox) */
+.documento.error {
+     border-color: #ff4444;
+     border-style: dashed; /* Manter o estilo original ou ajustar */
+}
+.trilhas__form.error {
+    /* Adicionar algum estilo se desejar, ex: borda */
+    /* border: 1px solid #ff4444; */
+}
+.checkbox__form.error label { /* Destaca o label se o checkbox for inválido */
+    /* color: #ff4444; */ /* Pode ser muito agressivo */
 }
 
 #login{
